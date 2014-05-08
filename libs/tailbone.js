@@ -123,7 +123,6 @@ Tailbone.prototype.initLocals = function () {
 
   if ( ! this.app) { return; }
 
-  var anchors = require('bootstrap-helper').anchors;
   var locals  = this.app.locals;
 
   locals.pageTitle = this.settings.pageTitle || CONFIG.pageTitle;
