@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ pageTitle }}{% endblock %}</title>
+    
+    {% if needBootstrap %}
+      <link rel="stylesheet" href="{{ stylesheets.bootstrap }}">
+      
+      {% if needFontAwesome %}
+        <link rel="stylesheet" href="{{ stylesheets.fa }}">
+      {% endif %}
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    {% endif %}
+
+
+    <link rel="stylesheet" href="{{ stylesheets.base }}">
+
+    {% if stylesheets.custom %}
+      <link rel="stylesheet" href="{{ stylesheets.custom }}">
+    {% endif %}
+    
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% if header %}
+    <div class="error-header">
+      {{ header|safe }}  
+    </div>
+    {% endif %}
+    
+    {% block content %}{% endblock %}
+
+    {% if header %}
+    <div class="error-footer">
+    {{ footer|safe }}
+    </div>
+    {% endif %}
+
+    {% if needJquery %}
+      <script src="{{ javascripts.jquery }}"></script>
+    {% endif %}
+
+    {% if needBootstrap %}
+      <script src="{{ javascripts.bootstrap }}"></script>
+    {% endif %}
+
+    {% if javascripts.custom %}
+      <script src="{{ javascripts.custom }}"></script>
+    {% endif %}
+    
+    {% block script %}{% endblock %}
+  </body>
+</html>

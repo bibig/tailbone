@@ -1,0 +1,16 @@
+{% extends './layout.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="main">
+      <h1>{{ message }}</h1>
+      <div style="margin: 2em auto;">
+        <img src="{{ errorImage }}" />
+      </div>
+      {% if error %}
+        <h2>{{ error.status }}</h2>
+        <pre>{{ error.stack }}</pre>
+      {% endif %}
+    </div>
+  </div><!-- end of container-->
+{% endblock %}

@@ -1,0 +1,40 @@
+{
+  "name": "tailbone",
+  "version": "0.0.1",
+  "description": "an error handler engine for express apps.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -w"
+  },
+  "keywords": [
+    "error-handler",
+    "express",
+    "tailbone"
+  ],
+  "dependencies": {
+    "express"            : "~4.0.0",
+    "stylus"             : "*",
+    "serve-favicon"      : "*",
+    "morgan"             : "~1.0.0",
+    "cookie-parser"      : "~1.0.1",
+    "body-parser"        : "~1.0.0",
+    "cookie-session"     : "*",
+    "connect-multiparty" : "*",
+    "csurf"              : "*",
+    "swig"               : "*",
+    "jsoncan"            : "1.1.9",
+    "jsoncan-dashboard"  : "jsoncan-dashboard",
+    "yi"                 : "0.0.2",
+    "htmler"             : "0.0.5",
+    "bootstrap-helper"   : "*"
+  },
+  "devDependencies": {
+    "supertest"  : "*",
+    "superagent" : "*",
+    "cheerio"    : "*",
+    "mocha"      : "*",
+    "should"     : "*"
+  },
+  "author": "Bibig <bibig@me.com> (https://twitter.com/bibig)",
+  "license": "MIT"
+}
