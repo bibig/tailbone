@@ -16,17 +16,9 @@
     "stylus"             : "*",
     "serve-favicon"      : "*",
     "morgan"             : "~1.0.0",
-    "cookie-parser"      : "~1.0.1",
-    "body-parser"        : "~1.0.0",
-    "cookie-session"     : "*",
-    "connect-multiparty" : "*",
-    "csurf"              : "*",
     "swig"               : "*",
-    "jsoncan"            : "1.1.9",
-    "jsoncan-dashboard"  : "jsoncan-dashboard",
     "yi"                 : "0.0.2",
-    "htmler"             : "0.0.5",
-    "bootstrap-helper"   : "*"
+    "htmler"             : "0.0.5"
   },
   "devDependencies": {
     "supertest"  : "*",

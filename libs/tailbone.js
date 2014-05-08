@@ -22,20 +22,11 @@ Tailbone.prototype.initApp = function () {
   var express        = require('express');
   var favicon        = require('serve-favicon');
   var logger         = require('morgan');
-  // var cookieParser   = require('cookie-parser');
-  // var bodyParser     = require('body-parser');
-  // var session        = require('cookie-session');
-  // var multipart      = require('connect-multiparty');
-  // var debug       = require('debug')('app');
-  // var csrf           = require('csurf');
   
   var swig           = require('swig');
-  // var swigExtras  = require('swig-extras');
   var app            = express();
 
   app.isProduction   = app.get('env') === 'production';
-
-  // swigExtras.useFilter(swig, 'nl2br');
 
   app.engine('html', swig.renderFile);
   app.set('view engine', 'html');
@@ -45,23 +36,10 @@ Tailbone.prototype.initApp = function () {
     app.set('view cache', false);
     swig.setDefaults({ cache: false });
   }
-  
-  // view engine setup
-  // app.set('views', path.join(__dirname, 'views'));
-  // app.set('view engine', 'jade');
 
 
   app.use(favicon(this.settings.favicon || CONFIG.favicon));
   app.use(logger('dev'));
-  // app.use(bodyParser.json());
- //  app.use(bodyParser.urlencoded());
-
-  /*
-  app.use(multipart({
-    maxFilesSize: 20 * 1024 * 1024,
-    uploadDir: path.join(__dirname, 'public/uploads')
-  }));
-  */
 
   app.use(require('stylus').middleware({
      src:path.join(__dirname, '../public'),
@@ -69,9 +47,6 @@ Tailbone.prototype.initApp = function () {
      force: (app.isProduction ?  false : true)
    }));
 
-  // app.use(cookieParser('jsoncan auths'));
-  // app.use(session({keys: ['jsoncan', 'auths'], maxAge: 60 * 60 * 1000}));
-  // app.use(csrf());
   app.use(express.static(path.join(__dirname, '../public')));
 
   /// error handlers

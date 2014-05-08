@@ -1,5 +1,3 @@
 *.log
 node_modules
-data/*
-test/fixtures/data
-examples/data
+public/stylesheets/error.css
