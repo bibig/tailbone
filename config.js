@@ -10,7 +10,7 @@ config.javascripts = {
 };
 
 config.stylesheets = {
-  base      : '/stylesheets/error.css',
+  base      : '/tailbone/stylesheets/error.css',
   bootstrap : '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
   fa        : '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
 };
@@ -21,7 +21,7 @@ config.messages = {
 };
 
 config.imagesMap = {
-  '404': '/images/ghost.png'
+  '404': '/tailbone/images/ghost.png'
 };
 
 config.pageTitle = '出错了';

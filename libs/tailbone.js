@@ -47,7 +47,7 @@ Tailbone.prototype.initApp = function () {
      force: (app.isProduction ?  false : true)
    }));
 
-  app.use(express.static(path.join(__dirname, '../public')));
+  app.use('/tailbone', express.static(path.join(__dirname, '../public')));
 
   /// error handlers
   // development error handler
