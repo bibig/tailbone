@@ -5,7 +5,7 @@ var yi   = require('yi');
 
 
 // base settings
-var config = {
+var Config = {
   
   favicon   : path.join(__dirname, './public/images/favicon.ico'),
   pageTitle : 'something wrong :(',
@@ -31,9 +31,10 @@ var config = {
 
 // all local url should added viewMount and staticRoot
 function create (viewMount, staticRoot) {
+  var config = yi.clone(Config);
 
   config.stylesheets.base = path.join(viewMount, staticRoot, '/stylesheets/error.css');
   config.imagesMap['404'] = path.join(viewMount, staticRoot, '/images/ghost.png');
 
-  return yi.clone(config);
+  return config;
 }
