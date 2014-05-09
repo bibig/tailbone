@@ -24,6 +24,8 @@ Tailbone.prototype.initConfig = function (settings) {
     footer          : ''
   });
 
+  if (! settings.viewMount && settings.mount ) { settings.viewMount = settings.mount; }
+
   this.config = yi.merge(settings, Config.create(settings.viewMount, settings.staticRoot));
 
 };

@@ -8,7 +8,7 @@ var yi   = require('yi');
 var config = {
   
   favicon   : path.join(__dirname, './public/images/favicon.ico'),
-  pageTitle : '出错了',
+  pageTitle : 'something wrong :(',
   imagesMap : {},
 
   // cdn settings  
@@ -25,7 +25,7 @@ var config = {
   messages: {
     '404': 'Sorry, the page you visit does not exist.',
     '500': 'Sorry, something wrong in server.'
-  },
+  }
 };
 
 
