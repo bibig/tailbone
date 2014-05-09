@@ -2,20 +2,31 @@ module.exports = Tailbone;
 
 var path   = require('path');
 var yi     = require('yi');
-var CONFIG = require('../config');
 
 function Tailbone (settings) {
   
-  this.settings = yi.merge(settings || {}, {
-    mount: '',
-    imagesMap   : {},
-    stylesheets : {},
-    javascripts : {}
+  this.initConfig(settings);
+  this.initApp();
+
+}
+
+Tailbone.prototype.initConfig = function (settings) {
+  var Config = require('../config');
+  
+  settings = yi.merge(settings, {
+    mount           : '',
+    viewMount       : '', // important, for static source url
+    staticRoot      : '/tailbone',  // the route app serve the static files
+    needBootstrap   : false,
+    needFontAwesome : false,
+    needJquery      : false,
+    header          : '',
+    footer          : ''
   });
 
-  this.initApp();
-  this.initLocals();
-}
+  this.config = yi.merge(settings, Config.create(settings.viewMount, settings.staticRoot));
+
+};
 
 Tailbone.prototype.initApp = function () {
   var self = this;
@@ -38,7 +49,7 @@ Tailbone.prototype.initApp = function () {
   }
 
 
-  app.use(favicon(this.settings.favicon || CONFIG.favicon));
+  app.use(favicon(this.config.favicon));
   app.use(logger('dev'));
 
   app.use(require('stylus').middleware({
@@ -47,7 +58,7 @@ Tailbone.prototype.initApp = function () {
      force: (app.isProduction ?  false : true)
    }));
 
-  app.use('/tailbone', express.static(path.join(__dirname, '../public')));
+  app.use(this.config.staticRoot, express.static(path.join(__dirname, '../public')));
 
   /// error handlers
   // development error handler
@@ -62,6 +73,8 @@ Tailbone.prototype.initApp = function () {
   });
 
   app.use(self.errorHandler());
+
+  yi.merge(app.locals, this.config);
 
   this.app = app;
 };
@@ -91,7 +104,6 @@ Tailbone.prototype.errorHandler = function (mounted) {
 };
 
 Tailbone.prototype.getErrorMessage = function (e) {
-  var statusMessages = this.settings.messages || CONFIG.messages;
   var status;
 
   if (e.message) {
@@ -100,12 +112,12 @@ Tailbone.prototype.getErrorMessage = function (e) {
 
   status = e.status || 500;
 
-  return statusMessages[status + ''];
+  return this.config.messages[status + ''];
 };
 
 Tailbone.prototype.getErrorImage = function (status) {
   status = status + '';
-  return this.settings.imagesMap[status] ||  this.settings.mount + (CONFIG.imagesMap[status] || CONFIG.imagesMap['404']);
+  return this.config.imagesMap[status] || this.config.imagesMap['404'];
 };
 
 Tailbone.prototype.getView = function (status) {
@@ -116,43 +128,6 @@ Tailbone.prototype.getView = function (status) {
     default:
       return 'error';
   }
-
-};
-
-Tailbone.prototype.initLocals = function () {
-
-  if ( ! this.app) { return; }
-
-  var locals  = this.app.locals;
-
-  locals.pageTitle = this.settings.pageTitle || CONFIG.pageTitle;
-  locals.mount     = this.settings.mount;
-  
-  locals.stylesheets = {
-    base      : this.settings.mount + CONFIG.stylesheets.base,
-    custom    : this.settings.stylesheets.customCss,
-    bootstrap : this.settings.stylesheets.bootstrap || CONFIG.stylesheets.bootstrap,
-    fa        : this.settings.stylesheets.fa || CONFIG.stylesheets.fa
-  };
-
-  locals.javascripts = {
-    jquery    : this.settings.javascripts.jquery || CONFIG.javascripts.jquery,
-    custom    : this.settings.javascripts.custom,
-    bootstrap : this.settings.javascripts.bootstrap || CONFIG.javascripts.bootstrap
-  };
-
-  locals.needBootstrap    = this.settings.needBootstrap;
-
-  if (locals.needBootstrap) {
-    locals.needJquery = true;
-    locals.needFontAwesome = this.settings.needFontAwesome;
-  } else {
-    locals.needJquery = this.settings.needJquery;  
-  }
-
-  // for user defined header and footer
-  locals.header = this.settings.header;
-  locals.footer = this.settings.footer;
 
 };
 

@@ -1,6 +1,8 @@
 # tailbone
 
-a modular app of express, only do one thing: render error page for main app.
++ an error handler node module
++ a modular app of express, only do one thing: render error pages for main(parent) app.
+
 
 ### install
   npm install tailbone
@@ -25,4 +27,4 @@ a modular app of express, only do one thing: render error page for main app.
 ```
 
 ### detail
-  pls see test file and examples
+  pls see examples

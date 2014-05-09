@@ -1,29 +1,39 @@
-var config = {};
+exports.create = create;
+
 var path = require('path');
+var yi   = require('yi');
 
-config.favicon = path.join(__dirname, './public/images/favicon.ico');
 
-// cdn settings
-config.javascripts = {
-  jquery    : '//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js',
-  bootstrap : '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'
+// base settings
+var config = {
+  
+  favicon   : path.join(__dirname, './public/images/favicon.ico'),
+  pageTitle : '出错了',
+  imagesMap : {},
+
+  // cdn settings  
+  javascripts: {
+    jquery    : '//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js',
+    bootstrap : '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'
+  },
+
+  stylesheets: {
+    bootstrap : '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
+    fa        : '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
+  },
+
+  messages: {
+    '404': 'Sorry, the page you visit does not exist.',
+    '500': 'Sorry, something wrong in server.'
+  },
 };
 
-config.stylesheets = {
-  base      : '/tailbone/stylesheets/error.css',
-  bootstrap : '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
-  fa        : '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
-};
 
-config.messages = {
-  '404': 'Sorry, the page you visit does not exist.',
-  '500': 'Sorry, something wrong in server.'
-};
+// all local url should added viewMount and staticRoot
+function create (viewMount, staticRoot) {
 
-config.imagesMap = {
-  '404': '/tailbone/images/ghost.png'
-};
+  config.stylesheets.base = path.join(viewMount, staticRoot, '/stylesheets/error.css');
+  config.imagesMap['404'] = path.join(viewMount, staticRoot, '/images/ghost.png');
 
-config.pageTitle = '出错了';
-
-module.exports = config;
+  return yi.clone(config);
+}
