@@ -56,4 +56,6 @@ mainApp.get('/e', function (req, res, next) {
 mainAppTailbone.enable(mainApp);
 
 
-mainApp.listen(4002);
+mainApp.listen(4002, function () {
+  console.log('listen on 4002');
+});

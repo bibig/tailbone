@@ -1,6 +1,6 @@
 {
   "name": "tailbone",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "an error handler engine for express apps.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,6 @@
   ],
   "dependencies": {
     "express"            : "~4.0.0",
-    "stylus"             : "*",
     "serve-favicon"      : "*",
     "morgan"             : "~1.0.0",
     "swig"               : "*",

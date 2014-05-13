@@ -33,7 +33,7 @@ var Config = {
 function create (viewMount, staticRoot) {
   var config = yi.clone(Config);
 
-  config.stylesheets.base = path.join(viewMount, staticRoot, '/stylesheets/error.css');
+  config.stylesheets.base = path.join(viewMount, staticRoot, '/stylesheets/base.css');
   config.imagesMap['404'] = path.join(viewMount, staticRoot, '/images/ghost.png');
 
   return config;
