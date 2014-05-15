@@ -54,13 +54,11 @@ Tailbone.prototype.initApp = function () {
   app.use(favicon(this.config.favicon));
   app.use(logger('dev'));
 
-  /*app.use(require('stylus').middleware({
-    debug    : true, 
-    src      : path.join(__dirname, '../public/stylesheets'),
+  app.use(this.config.staticRoot, require('stylus').middleware({
+    src      : path.join(__dirname, '../public'),
     compress : (app.isProduction ? true : false),
     force    : (app.isProduction ?  false : true)
-   }));
-  */
+  }));
  
   app.use(this.config.staticRoot, express.static(path.join(__dirname, '../public')));
 
