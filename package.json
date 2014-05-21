@@ -1,24 +1,26 @@
 {
   "name": "tailbone",
-  "version": "0.0.4",
-  "description": "an error handler engine for express apps.",
+  "version": "0.1.0",
+  "description": "an error handler modular app for express apps.",
   "main": "index.js",
   "scripts": {
     "test": "mocha -w"
   },
   "keywords": [
-    "error-handler",
+    "error",
+    "hanlder",
+    "modular",
     "express",
     "tailbone"
   ],
   "dependencies": {
-    "express"       : "~4.0.0",
-    "stylus"        : "0.42.3",
+    "express"       : "^4.0.0",
+    "stylus"        : "^0.42.3",
     "serve-favicon" : "*",
-    "morgan"        : "~1.0.0",
+    "morgan"        : "^1.0.0",
     "swig"          : "*",
-    "yi"            : "0.0.3",
-    "htmler"        : "0.0.5"
+    "yi"            : ">= 0.0.3",
+    "htmler"        : ">= 0.0.5"
   },
   "devDependencies": {
     "supertest"  : "*",

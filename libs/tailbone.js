@@ -76,7 +76,15 @@ Tailbone.prototype.initApp = function () {
 
   app.use(self.errorHandler());
 
-  yi.merge(app.locals, this.config);
+  yi.merge(app.locals, yi.filter(this.config, [
+    'needJquery',
+    'needBootstrap',
+    'needFontAwesome',
+    'stylesheets',
+    'javascripts',
+    'header',
+    'footer'
+  ]));
 
   this.app = app;
 };
@@ -87,6 +95,7 @@ Tailbone.prototype.errorHandler = function (mounted) {
   return function (e, req, res, next) {
     var status = e.status = e.status || 500;
     var locals = {
+      pageTitle: self.config['pageTitle_' + status] || self.config.pageTitle,
       message: self.getErrorMessage(e),
       errorImage: self.getErrorImage(status)
     };

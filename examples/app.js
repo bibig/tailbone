@@ -15,6 +15,8 @@ var mainAppSettings = {
   viewMount       : '',
   mount           : '',
   pageTitle       : 'Main app',
+  pageTitle_404   : '404 @ Main app',
+  pageTitle_500   : '500 @ Main app',
   header          : '<center><h1><a href="/">Main app</a></h1></center>',
   footer          : '<center>copyright 2014</center>',
   needJquery      : true,
@@ -28,6 +30,8 @@ var mainAppSettings = {
 var subAppSettings = yi.merge({
   viewMount: '/sub',
   pageTitle: 'Sub app',
+  pageTitle_404   : '404 @ Sub app',
+  pageTitle_500   : '500 @ Sub app',
   header: '<center><h1><a href="/sub">Sub app</a></h1></center>',
 }, yi.clone(mainAppSettings));
 
